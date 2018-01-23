@@ -1,0 +1,321 @@
+ *  {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        font-family: 'microsoft yahei' !important; 
+    }
+    h4,p{
+        margin:0;
+        padding:0;
+    }
+    
+    body{
+        width:100%;
+        min-width:1366px;
+        min-height:768px;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        position: relative;
+        top:0;
+        left:0;
+        bottom: 0;
+        right: 0;
+        background-image:url(../images/background.jpg);
+        background-repeat:no-repeat;
+        background-size:cover;
+        overflow-y: auto;
+        overflow-x: hidden;
+        color:#fff;
+        font-family: 'microsoft yahei'
+    }
+   .center{
+        position: absolute;
+        width:40%;
+        left: 30%;
+        bottom:0;
+        padding-top: 20px;
+        top:80px;
+    }
+    .left{
+        position: absolute;
+        width:30%;
+        left:0;
+        bottom:0;
+        /*border:1px solid #ddd;*/
+        top:80px;
+        z-index: 999;
+        padding: 25px 35px;
+         
+    }
+    .right{
+        position: absolute;
+        width:30%;
+        right:0;
+        bottom:0;
+        /*border:1px solid #ddd;*/
+        z-index: 999;
+        padding: 25px 35px;
+        top:80px;
+         
+    }
+    .time{
+        position:absolute;
+        right:10px;
+        top:0;
+        height:80px;
+        width:250px;
+        text-align: center;
+        line-height: 30px;
+        padding:10px;
+    }
+    .date:after{
+        display: block;
+        content:"";
+        clear:both;
+    }
+    .time .date{
+        color:#fff;
+        font-weight: bold;
+        font-size: 14px;
+        margin:0;
+        text-align: center;
+    }
+    
+    .clock{
+        color:#fff;
+        font-size: 38px;
+        font-weight: bold;
+    }
+    /*用户规模*/
+    .customer{
+        width:100%;
+        height:50%;
+        /*border:1px solid #ddd;*/
+        box-sizing: border-box;
+        background-image:url(../images/kehu.png);
+        background-size:100% 100%;
+        background-repeat:no-repeat;
+        /*margin-bottom: 20px;*/
+        padding-top: 95px;
+        color:#fff !important;
+    }
+    .leftContainer{
+        width:80%;
+        height:80%;
+        margin:0 auto;
+        box-sizing: border-box;
+   
+    }
+    .sum .user{
+        color:#B0D97B;
+    }
+    .sum h4{
+        padding-bottom: 20px;
+        font-size: 20px;
+        height: 46px;
+        line-height: 46px;
+        font-weight: 400;
+        padding-left: 49px;
+        background:url(../images/zong.png) no-repeat;
+    }
+    .user-detail{
+        padding:10px 0;
+        padding-top: 20px;
+        padding-left: 5px;
+    }
+    .user-detail div{
+        height:50px;
+        line-height: 36px;
+        /*padding:10px 0;*/
+        padding-left: 45px;
+        font-size: 16px;
+    }
+    .user-detail div.space{
+        background:url(../images/space.png) no-repeat;
+    }
+    .user-detail div.xingwei{
+        background:url(../images/xingwei.png) no-repeat;
+    } 
+    .user-detail div.add{
+        background:url(../images/add.png) no-repeat;
+    }
+    .user-detail div.online{
+        background:url(../images/online.png) no-repeat;
+    }
+    
+    .user-detail div span{
+        color:#B0D97B;
+    }
+    /*空间活跃度*/
+    .spaceActivity{
+        width:100%;
+        height:50%;
+        background-image:url(../images/huoyue.png);
+        background-size:100% 100%;
+        background-repeat:no-repeat;
+        padding: 120px 25px 40px 40px;
+        color:#fff !important;
+        overflow:hidden;
+    }
+    ul{
+        text-align: center;
+        margin: 0;
+        /*line-height: 30px;*/
+        padding:0;
+    }
+    ul:after{
+        display: block;
+        content:"";
+        clear:both;
+    }
+    li{
+        float: left;
+        width: 78px;
+        list-style: none;
+        font-size: 16px;
+        /*line-height: 20px;*/
+    }
+    #box1 li{
+        font-size: 18px;
+    }
+    #box1 ul li:first-child{
+        width:50px;
+        text-align: center;
+    }
+    #box1 ul li:nth-child(2){
+        width:150px;
+        text-align: center;
+    }
+    #box2 ul li:first-child{
+        width:50px;
+        text-align: center;
+        color:#EBEA9F;
+        font-weight: bold;
+    }
+    #box2 ul li:nth-child(2){
+        width:150px;
+        text-align: center;
+    }
+    #box2 ul li:nth-child(4){
+        color:#B0D97B;
+    }
+    #box2 ul li:nth-child(5){
+        color:#03FDFE;
+    }
+    ul:after{
+        content: '';
+        display: block;
+        clear: both;
+    }
+    #box2 ul{
+        margin-bottom: 0;
+    }
+    #box2 li{
+        /*padding-bottom: 10px;*/
+        height:45px;
+        line-height: 20px;
+        overflow-y:hidden;
+    }
+    #box2{
+        position: relative;
+        overflow: hidden;
+        margin-top: 30px;
+         
+    }
+    #box2 div{
+        position: absolute;
+    }
+    /*站内资源*/
+    .right .resource{
+        width:100%;
+        height:50%;
+        background-image:url(../images/resource.png);
+        background-size:100% 100%;
+        background-repeat:no-repeat;
+        box-sizing: border-box;
+        padding:67px 40px 26px 50px;
+    }
+    #resourceDate{
+        width:100%;
+        height:100%;
+    }
+    /*站内用户*/
+    .right .stationUser{
+        width:100%;
+        height:50%;
+        background-image:url(../images/mine.png);
+        background-size:100% 100%;
+        background-repeat:no-repeat;
+        padding:90px 0px 35px 0px;
+    }
+     #rightDate{
+        width:100%;
+        height:100%;
+        padding: 10px 20px;
+    }
+    
+    /*媒体查询*/
+    @media (max-width: 1366px){
+         .customer{
+            padding-top: 59px;
+        }
+        .user-detail {
+            padding-top: 0px;
+        }
+        .user-detail div {
+            height: 45px;
+            line-height: 32px;
+        }
+        .spaceActivity {
+            padding: 75px 12px 15px 22px;
+        }
+        .right .stationUser {
+            padding: 75px 0px 35px 0px;
+        }
+        #rightDate{
+            padding: 0;
+        }
+        .sum h4{
+            font-size: 16px;
+        }
+        .user-detail div {
+            font-size: 14px;
+        }
+        .tbl thead th{
+            font-weight:400;
+            font-size: 16px;
+        }
+        li{
+            width:40px;
+        }
+        #box1 li{
+            font-size: 16px;
+        }
+        #box2 li{
+            font-size: 14px;
+        }
+        #box1 ul li:first-child{
+            width:45px;
+        }
+        #box1 ul li:nth-child(2){
+            width:130px;
+            text-align: center;
+        }
+        #box2 ul li:first-child{
+            width:40px;
+            text-align: center;
+        }
+        #box2 ul li:nth-child(2){
+            width:130px;
+            text-align: center;
+        }
+        #box2{
+            margin-top: 10px;
+        }
+        #box2 li{
+            height:35px;
+            line-height: 16px;
+        }
+    }
+    

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+    
+    
+<style type="text/css">
+	.a1:hover{
+		font-size: 30px;
+	}
+	.a2:hover{
+		font-size: 20px;
+	}
+</style>
+</head>
+<body>
+
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<div id="container">
+	<a href="javascript:void(0)" class="a1">aa</a>
+	<a href="javascript:void(0)" class="a2">bb</a>
+</div>
+
+<script type="text/javascript">
+	var arr=[30,20]
+	
+	$('#container a').on('click',function(){
+		var index=$(this).index();
+		$(this).css('font-size',arr[index]);
+		$(this).siblings().css('font-size',"")
+	})
+</script>
+</body>
+</html>
