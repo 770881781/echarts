@@ -1,0 +1,593 @@
+<?php include_once('db.php'); ?>
+<!DOCTYPE html>
+<html p0>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="echarts/css/bigdata.css">
+    <link rel="stylesheet" href="echarts/css/bootstrap.min.css">
+    <title>Document</title>
+     
+</head>
+<body > 
+    <div class="center" id="centerMap">
+        
+    </div>
+    <div class="left">
+        <div class="customer">
+            <div class="leftContainer">
+                <div class="sum">
+                    <h4>用户总数：<span class="user">1568446</span>人</h4>
+                    <div class="user-detail">
+                        <div class="space">
+                            空间开通：<span>234</span>人
+                        </div>
+                        <div class="xingwei">
+                            今日用户行为：<span>434</span>人
+                        </div>
+                        <div class="add">
+                            今日新增用户：<span>2456</span>人
+                        </div>
+                        <div class="online">
+                            当前在线人数：<span>3487</span>人
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 用户活跃度 -->
+        <div class="spaceActivity">
+            <div id="box1">
+                <ul>
+                    <li>名次</li>
+                    <li>学校名称</li>
+                    <li>总用户数</li>
+                    <li>昨日活跃</li>
+                    <li>活跃度</li>
+                </ul>
+            </div>
+            <div id="box2">
+                <div>
+                    <ul>
+                        <li>1</li>
+                        <li>淮安小学</li>
+                        <li>100</li>
+                        <li>40</li>
+                        <li>50</li>
+                    </ul>
+                    <ul>
+                        <li>2</li>
+                        <li>malitun小学</li>
+                        <li>100</li>
+                        <li>90</li>
+                        <li>80</li>
+                    </ul>
+                    <ul>
+                        <li>3</li>
+                        <li>打发小学</li>
+                        <li>100</li>
+                        <li>70</li>
+                        <li>10</li>
+                    </ul>
+                    <ul>
+                        <li>4</li>
+                        <li>大房东小学</li>
+                        <li>100</li>
+                        <li>90</li>
+                        <li>80</li>
+                    </ul>
+                    <ul>
+                        <li>5</li>
+                        <li>是地方官史蒂夫公司的小学</li>
+                        <li>100</li>
+                        <li>90</li>
+                        <li>80</li>
+                    </ul>
+                    <ul>
+                        <li>6</li>
+                        <li>新东方做的饭小学</li>
+                        <li>100</li>
+                        <li>90</li>
+                        <li>80</li>
+                    </ul>
+                    <ul>
+                        <li>7</li>
+                        <li>不是饭饱的小学</li>
+                        <li>100</li>
+                        <li>50</li>
+                        <li>20</li>
+                    </ul>
+                    <ul>
+                        <li>8</li>
+                        <li>的感觉小学</li>
+                        <li>100</li>
+                        <li>90</li>
+                        <li>10</li>
+                    </ul>
+                    <ul>
+                        <li>9</li>
+                        <li>软壳小学</li>
+                        <li>100</li>
+                        <li>40</li>
+                        <li>60</li>
+                    </ul>
+                    <ul>
+                        <li>10</li>
+                        <li>看了公交卡小学</li>
+                        <li>100</li>
+                        <li>50</li>
+                        <li>20</li>
+                    </ul>
+                    <ul>
+                        <li>11</li>
+                        <li>的感觉小学</li>
+                        <li>100</li>
+                        <li>90</li>
+                        <li>10</li>
+                    </ul>
+                    <ul>
+                        <li>12</li>
+                        <li>软壳小学</li>
+                        <li>100</li>
+                        <li>40</li>
+                        <li>60</li>
+                    </ul>
+                    <ul>
+                        <li>13</li>
+                        <li>看了公交卡小学</li>
+                        <li>100</li>
+                        <li>50</li>
+                        <li>20</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+         
+    </div>
+    <!-- 右边内容 -->
+    <div class="right">
+        <!-- 站内资源 -->
+        <div class="resource">
+            <div id="resourceDate"></div>
+             
+        </div>
+        <!-- 站内用户 -->
+        <div class="stationUser">
+            <div id="rightDate"></div>
+        </div>
+    </div>
+    <div class="time">
+        <div class="date">
+            <span>2017</span>年<span>12</span>月<span>20</span>日&nbsp;星期<span>三</span>
+        </div>
+        <div class="clock">
+            <span>16:12:50</span>
+        </div>
+    </div>
+    
+    <script src="echarts/doc/asset/js/esl/esl.js" type="text/javascript">
+    </script>
+    <script src="echarts/doc/example/www/js/echarts.js" type="text/javascript">
+    </script>
+    <script src="echarts/doc/example/www/js/chart/map.js" type="text/javascript">
+    </script>
+    <script src="echarts/doc/asset/js/jquery.min.js" type="text/javascript">
+    </script>
+    <script>
+        var rightBottomChart;
+        var rightChart;
+    </script>
+    <!-- 中间淮安地图 -->
+    <script type="text/javascript">
+         var res_is = <?php echo json_encode($res); ?>; 
+         var res_value = <?php echo json_encode($res_val); ?>;   
+         require.config({
+                    paths: {
+                        'echarts': 'http://echarts.baidu.com/build/dist',
+                        'echarts/chart/map': "echarts/doc/example/www/js/chart",
+                        'zrender': "echarts/zrender"
+                    }
+                });
+                require(['echarts', 'echarts/chart/map'], DrawEChart);                           
+                            require.config({
+                                paths: {
+                                    'echarts': 'http://echarts.baidu.com/build/dist',
+                                    'echarts/chart/map': "echarts/doc/example/www/js/chart",
+                                    'zrender': "echarts/zrender"
+                                }
+                            });
+                            // require(['echarts', 'echarts/chart/map'], DrawEChart);
+                            var colorList = ['#038000', '#C79D00', '#FF9500','#FF9540','#038000', '#C79D00', '#FF9500','#038000', '#C79D00', '#FF9500',];                    
+                            function DrawEChart(ec) {
+                                option = {
+                                    //backgroundColor: '#333',
+                                    color: ['gold', 'aqua', 'lime'],
+                                    tooltip: {
+                                        trigger:'item',                                         
+                                        backgroundColor:'rgba(3,3,3,0.5)',
+                                        borderRadius:5,
+                                        itemStyle:{
+                                            normal:{
+                                                fontFamily:'微软雅黑'
+                                            }
+                                        },
+                                        
+
+                                    },
+                                     
+                                    series: [{
+                                        name: '淮安市',
+                                        type: 'map',
+                                        
+                                        roam:true,
+                                        scaleLimit:{
+                                            max:1.5,
+                                            min:0.8
+                                        },
+                                        hoverable:false,
+                                        clickable: false,
+                                        mapType: '淮安市',
+                                        itemStyle: {
+                                            normal: {
+                                                label: {
+                                                    show: true, //隐藏地图文字
+                                                    textStyle: {
+                                                        color: "#fff",
+                                                        fontSize:18
+                                                    }
+                                                },
+                                                borderColor: '#fff',
+                                                borderWidth: 0.3,
+                                                areaStyle: {
+                                                     color: 'rgba(218,253,254,0.2)'
+                                                    // color:'#DAFDFE'
+                                                }
+                                            },
+
+                                        },
+                                        
+                                        data: [],
+                                        geoCoord: res_is
+                                    }, 
+                                    {
+                                        name: '淮安市',
+                                        type: 'map',
+                                        mapType: '淮安市',
+                                        data: [],
+                                        markPoint: {
+                    
+                                            symbol: 'emptyCircle',
+                                            symbolSize: function(v) {
+                                                return 10 + v / 100;                     
+                                            },
+                                             effect : {
+                                                show: true,
+                                                shadowBlur : 0,
+                                                //color:'#08D1F7',
+                                                },
+                                                itemStyle:{
+                                                    normal:{
+                                                        label:{show:false}
+                                                    },
+                                                emphasis: {
+                                                    label:{position:'top'              }
+                                                    }
+                                                 },
+                                                data: res_value
+                                                }
+                                        }]
+                                    };                                                  
+                                myChart = ec.init(document.getElementById('centerMap'));
+                                var ecConfig = require('echarts/config');
+                                var mapType = ['淮安'];
+                                var cityMap = {
+                                    "淮安市": "320800",                                   
+                                };
+                                var hefeiUrl = "echarts/doc/example/geoJson/china-main-city/";
+                                var mapGeoData = require('echarts/util/mapData/params');
+                                for (var city in cityMap) {
+                                    mapType.push(city);
+                                    mapGeoData.params[city] = {
+                                        getGeoJson: (function(c) {
+                                            var geoJsonName = cityMap[c];
+                                            return function(callback) {
+                                                $.getJSON(hefeiUrl + geoJsonName + '.json', callback)
+                                            }
+                                        })(city)
+                                    }
+                                };
+                                myChart.setOption(option)
+                            }  
+                            //获取随机颜色
+                            // function getRandomColor(){ 
+                            //     return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6); 
+                            // }
+        
+    </script>
+    <!-- 站内资源 -->
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // 使用
+        require(['echarts','echarts/chart/pie'],DrawEChart); 
+        function DrawEChart(ec){
+             rightChart=ec.init(document.getElementById('resourceDate'));
+                
+               var  option2 = {       
+                    color:['#87CEFA','#2EC8CA','#FF7F50','#39A2F5','#AF95E0','#E7E588','#08C17C','#98D643','#DE9D98','#D1AA31'],         
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b}: {c} ({d}%)"
+                    },
+
+                    series: [
+                        {   
+                            name:'资源展示',
+                            type:'pie',
+                            selectedMode: 'single',
+                            radius: [0, '40%'],
+
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        position : 'inner',
+                                        textStyle:{
+                                            fontSize:15,
+                                            fontFamily:'microsoft yahei'
+                                        }
+                                    },
+                                    labelLine : {
+                                        show : false
+                                    }
+                                },
+                                emphasis:{
+                                    label:{
+                                        show:true,
+                                        textStyle:{
+                                            fontSize:15,
+                                            fontFamily:'microsoft yahei'
+                                        }
+                                    }
+                                }
+                            },
+                            
+                            data:[
+                                {value:335, name:'课件'},
+                                {value:879, name:'视频'},
+                                {value:548, name:'习题'}, 
+                            ]
+                        },
+                        {
+                            name:'资源展示',
+                            type:'pie',
+                            radius: ['50%', '65%'],
+                            label: {
+                                normal: {
+                                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                                },
+                            },
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        textStyle:{
+                                            fontSize:15,
+                                            fontFamily:'microsoft yahei'
+                                        }
+                                    },
+                                },
+                                emphasis:{
+                                    label:{
+                                        textStyle:{
+                                            fontSize:15,
+                                            fontFamily:'microsoft yahei'
+                                        }
+                                    }
+                                }
+                            },
+                            data:[
+                                {value:50, name:'动态'},
+                                {value:310, name:'日志'},
+                                {value:234, name:'资源'},
+                                {value:135, name:'同步课程'},
+                                {value:480, name:'微课'},
+                                {value:451, name:'直播课堂'},
+                                {value:147, name:'文章'},
+                                {value:102, name:'习题'},
+                                {value:102, name:'试卷'}
+                            ]
+                        }
+                    ]
+                };
+                rightChart.setOption(option2)    
+            }
+               
+             
+        
+        
+    </script>
+
+    <!-- 站内用户 -->
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // 使用
+        require(['echarts','echarts/chart/line'],DrawEChart2); 
+        function DrawEChart2(ec){
+            rightBottomChart=ec.init(document.getElementById('rightDate'));
+                
+               option3 = {
+                    // title : {
+                    //     text: '某楼盘销售情况',
+                    //     subtext: '纯属虚构'
+                    // },
+                    tooltip : {
+                        trigger: 'axis'
+                    },
+                   
+                    legend:{
+                        data:['注册教师','教师空间','注册学生','学生空间',],
+                        textStyle:{
+                            color:'#fff',
+                            fontSize:14,
+                            fontFamily:'microsoft yahei'
+                        }
+                        
+                    }, 
+                    calculable : true,
+                    
+                    xAxis : [
+                        {
+                            type : 'category',
+                            boundaryGap : false,
+                            data : ['幼儿园','小学','初中','高中','职高'],
+                            axisLabel:{
+                                textStyle:{
+                                    color:'#fff',
+                                    fontSize:15,
+                                    fontFamily:'microsoft yahei'
+                                }
+                            }
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value',
+                            axisLabel:{
+                                textStyle:{
+                                    color:'#fff',
+                                    fontSize:15,
+                                    fontFamily:'microsoft yahei'
+                                }
+                            }
+                        }
+                    ],
+                    grid:{
+                        x:70,
+                        y:50,
+                        x2:40,
+                        y2:30
+                    },
+                    series : [
+                        {
+                            name:'注册教师',
+                            type:'line',
+                            smooth:true,
+                            // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                            data:[100, 102, 21, 54, 260, 830, 710],
+                            symbol:'emptyCircle',
+                            symbolSize:3,
+                            legendHoverLink:true,
+                            markPoint:{
+                                data:[
+                                    {type:'max',name:'最大值'},
+
+                                    {type:'min',name:'最小值'}
+                                ]
+                            }
+                        },
+                        {
+                            name:'教师空间',
+                            type:'line',
+                            smooth:true,
+                            // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                            data:[30, 182, 434, 791, 390, 30, 10],
+                            symbol:'emptyCircle',
+                            symbolSize:3,
+                            markPoint:{
+                                data:[
+                                    {type:'max',name:'最大值'},
+
+                                    {type:'min',name:'最小值'}
+                                ]
+                            }
+                        },
+                        {
+                            name:'注册学生',
+                            type:'line',
+                            smooth:true,
+                            // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                            data:[320, 112, 601, 234, 120, 90, 20],
+                            symbol:'emptyCircle',
+                            symbolSize:3,
+                            markPoint:{
+                                data:[
+                                    {type:'max',name:'最大值'},
+
+                                    {type:'min',name:'最小值'}
+                                ]
+                            }
+                        },
+                        {
+                            name:'学生空间',
+                            type:'line',
+                            smooth:true,
+                            // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                            data:[20, 132, 176, 24, 220, 90, 80],
+                            symbol:'emptyCircle',
+                            symbolSize:3,
+                            markPoint:{
+                                data:[
+                                    {type:'max',name:'最大值'},
+
+                                    {type:'min',name:'最小值'}
+                                ]
+                            }
+                        },
+
+                    ]
+                };
+                    rightBottomChart.setOption(option3)
+                }
+               
+             
+        
+        
+    </script>
+    <!-- 调整 -->
+    <script>
+        $(function(){
+            $('body').width($(window).width())
+            $('body').height($(window).height())
+            myChart.resize();
+            $(window).resize(function(){
+                $('body').width($(window).width());
+                $('body').height($(window).height());
+                myChart.resize();
+                rightChart.resize();
+                rightBottomChart.resize();
+            })
+        })
+       //数据滚动
+       var oDiv=document.getElementById('box2');
+       var aUl=oDiv.getElementsByTagName('ul');
+       var box=oDiv.getElementsByTagName('div')[0];
+       var num=0;
+       var timer=null;
+        box.innerHTML+=box.innerHTML;
+        console.log(aUl.length)
+       var aheght=aUl[0].offsetHeight;
+        oDiv.style.height=aheght*5+'px';
+        //console.log(aUl[0].margin)
+        box.timer=setInterval(function () {
+            box.style.top=aheght*num+'px';
+            num--;
+            if(num==-aUl.length/2){
+                num=0;
+            }
+
+        },1800)
+
+         
+    </script>
+</body>
+</html>
