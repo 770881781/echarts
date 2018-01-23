@@ -3,7 +3,7 @@ $mysql_conf = array(
     'host'    => '127.0.0.1:3306', 
     'db'      => 'isp_oa', 
     'db_user' => 'root', 
-    'db_pwd'  => 'trust___MeILIU@!#@$@bEIjING', 
+    'db_pwd'  => '', 
     );
 $pdo = new PDO("mysql:host=" . $mysql_conf['host'] . ";dbname=" . $mysql_conf['db'], $mysql_conf['db_user'], $mysql_conf['db_pwd']);//创建一个pdo对象
 $pdo->exec("set names 'utf8'");
