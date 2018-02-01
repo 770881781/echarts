@@ -1,5 +1,5 @@
 <?php
-$db_sns = myPDO::getInstance('127.0.0.1:3306', 'root', 'trust___MeILIU@!#@$@bEIjING','isp_sns', 'utf8');
+$db_sns = myPDO::getInstance('127.0.0.1:3306', 'root','', 'isp_sns', 'utf8');
 $res_sns = $db_sns->query("select a.school_id,b.name,count(a.id) as peop_num from isns_user_class a, isns_ioa_school b where  a.school_id = b.school_id group by school_id");
 $timestart = mktime(-24,0,0, date('m'), date('d'), date('Y'));        
 $timesend  = mktime(0,0,0, date('m'), date('d'), date('Y'));    

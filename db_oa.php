@@ -1,6 +1,6 @@
 <?php
 require 'myPDO.class.php';
-$db_oa = myPDO::getInstance('127.0.0.1:3306', 'root', 'trust___MeILIU@!#@$@bEIjING','isp_oa', 'utf8');
+$db_oa = myPDO::getInstance('127.0.0.1:3306', 'root', '','isp_oa', 'utf8');
 $re_oa = $db_oa->query("SELECT `name`,`coordinate` FROM `ioa_school` WHERE `coordinate` <> 0 ");
 foreach ($re_oa as $key => $value) {
     $coordinate = explode(',',$value['coordinate']);
