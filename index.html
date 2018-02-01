@@ -1,6 +1,6 @@
-<?php include_once('db.php'); ?>
+<?php include_once('db_oa.php'); include_once('db_sns.php'); ?>
 <!DOCTYPE html>
-<html p0>
+<html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -47,99 +47,7 @@
                 </ul>
             </div>
             <div id="box2">
-                <div>
-                    <ul>
-                        <li>1</li>
-                        <li>淮安小学</li>
-                        <li>100</li>
-                        <li>40</li>
-                        <li>50</li>
-                    </ul>
-                    <ul>
-                        <li>2</li>
-                        <li>malitun小学</li>
-                        <li>100</li>
-                        <li>90</li>
-                        <li>80</li>
-                    </ul>
-                    <ul>
-                        <li>3</li>
-                        <li>打发小学</li>
-                        <li>100</li>
-                        <li>70</li>
-                        <li>10</li>
-                    </ul>
-                    <ul>
-                        <li>4</li>
-                        <li>大房东小学</li>
-                        <li>100</li>
-                        <li>90</li>
-                        <li>80</li>
-                    </ul>
-                    <ul>
-                        <li>5</li>
-                        <li>是地方官史蒂夫公司的小学</li>
-                        <li>100</li>
-                        <li>90</li>
-                        <li>80</li>
-                    </ul>
-                    <ul>
-                        <li>6</li>
-                        <li>新东方做的饭小学</li>
-                        <li>100</li>
-                        <li>90</li>
-                        <li>80</li>
-                    </ul>
-                    <ul>
-                        <li>7</li>
-                        <li>不是饭饱的小学</li>
-                        <li>100</li>
-                        <li>50</li>
-                        <li>20</li>
-                    </ul>
-                    <ul>
-                        <li>8</li>
-                        <li>的感觉小学</li>
-                        <li>100</li>
-                        <li>90</li>
-                        <li>10</li>
-                    </ul>
-                    <ul>
-                        <li>9</li>
-                        <li>软壳小学</li>
-                        <li>100</li>
-                        <li>40</li>
-                        <li>60</li>
-                    </ul>
-                    <ul>
-                        <li>10</li>
-                        <li>看了公交卡小学</li>
-                        <li>100</li>
-                        <li>50</li>
-                        <li>20</li>
-                    </ul>
-                    <ul>
-                        <li>11</li>
-                        <li>的感觉小学</li>
-                        <li>100</li>
-                        <li>90</li>
-                        <li>10</li>
-                    </ul>
-                    <ul>
-                        <li>12</li>
-                        <li>软壳小学</li>
-                        <li>100</li>
-                        <li>40</li>
-                        <li>60</li>
-                    </ul>
-                    <ul>
-                        <li>13</li>
-                        <li>看了公交卡小学</li>
-                        <li>100</li>
-                        <li>50</li>
-                        <li>20</li>
-                    </ul>
-                </div>
+                <div></div>
             </div>
         </div>
          
@@ -173,6 +81,19 @@
     </script>
     <script src="echarts/doc/asset/js/jquery.min.js" type="text/javascript">
     </script>
+    <script>
+        var res_sns = <?php echo $res_json; ?>;
+        var res_list = '';       
+        $.each(res_sns, function (i, item) {                  
+            res_list +='<ul><li>'+(i+1);
+            res_list +='</li><li>'+item.name; 
+            res_list +='</li><li>'+item.peop_num; 
+            res_list +='</li><li>'+item.number;
+            res_list +='</li><li>'+item.number_is+'%';
+            res_list +='</li></ul>';                                           
+        });        
+        $('#box2 div').html(res_list);
+    </script>  
     <script>
         var rightBottomChart;
         var rightChart;
@@ -573,19 +494,24 @@
        var box=oDiv.getElementsByTagName('div')[0];
        var num=0;
        var timer=null;
-        box.innerHTML+=box.innerHTML;
-        console.log(aUl.length)
-       var aheght=aUl[0].offsetHeight;
-        oDiv.style.height=aheght*5+'px';
-        //console.log(aUl[0].margin)
-        box.timer=setInterval(function () {
-            box.style.top=aheght*num+'px';
-            num--;
-            if(num==-aUl.length/2){
-                num=0;
-            }
+            if(aUl.length>=6){
+                box.innerHTML+=box.innerHTML;
+                console.log(aUl.length)
+                var aheght=aUl[0].offsetHeight;
+                oDiv.style.height=aheght*5+'px';
+                //console.log(aUl[0].margin)
+                box.timer=setInterval(function () {
+                    box.style.top=aheght*num+'px';
+                    num--;
+                    if(num==-aUl.length/2){
+                        num=0;
+                    }
 
-        },1800)
+                },1800)
+            }else
+            {
+                oDiv.style.height=aheght*aUl.lenght+'px';
+            }
 
          
     </script>
